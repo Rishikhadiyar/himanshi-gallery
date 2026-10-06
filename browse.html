@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Home - Himanshi</title>
+  <link rel="icon" type="image/png" href="https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico" />
+  <link rel="stylesheet" href="style.css?v=43" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Martel+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        for (var i = 0; i < regs.length; i++) regs[i].unregister();
+      });
+    }
+  </script>
+</head>
+
+<body class="browse-page">
+  <!-- ===== PREMIUM EFFECTS ===== -->
+  <div id="cursor-glow" class="cursor-glow"></div>
+  <div id="page-transition" class="page-transition"></div>
+
+  <!-- ===== BROWSE NAVBAR ===== -->
+  <nav class="browse-navbar" id="navbar">
+    <div class="browse-nav-left">
+      <a href="index.html" class="netflix-logo" aria-label="Himanshi Home">
+        <span class="brand-logo-text">HIMANSHI</span>
+      </a>
+      <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Browse Categories" aria-expanded="false">
+        <span>Browse</span>
+        <svg class="mobile-nav-caret" viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </button>
+      <ul class="browse-nav-links" id="browse-nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Videos</a></li>
+        <li><a href="#">Photos</a></li>
+        <li><a href="#">New &amp; Popular</a></li>
+        <li><a href="#">My List</a></li>
+        <li><a href="#">Browse by Languages</a></li>
+      </ul>
+    </div>
+    <div class="browse-nav-right">
+      <!-- Search Box -->
+      <div class="nav-search" id="nav-search">
+        <button class="nav-search-btn" id="nav-search-btn" aria-label="Search">
+          <svg class="browse-nav-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <input type="text" class="nav-search-input" id="nav-search-input" placeholder="Titles, tags..." autocomplete="off" />
+        <button class="nav-search-clear hidden" id="nav-search-clear" aria-label="Clear search">✕</button>
+      </div>
+      <!-- Notifications -->
+      <div class="nav-notifications" id="nav-notifications">
+        <button class="nav-notifications-btn" id="nav-notifications-btn" aria-label="Notifications">
+          <svg class="browse-nav-icon" viewBox="0 0 24 24" fill="white" width="20" height="20">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span class="nav-notifications-badge hidden" id="nav-notifications-badge"></span>
+        </button>
+        <!-- Dropdown Menu -->
+        <div class="nav-notifications-dropdown" id="nav-notifications-dropdown">
+          <div class="nav-notifications-header">Notifications</div>
+          <div class="nav-notifications-list" id="nav-notifications-list">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+      <!-- Profile Dropdown -->
+      <div class="nav-profile" id="nav-profile-btn">
+        <div class="nav-avatar profile-red"></div>
+        <svg class="nav-caret" viewBox="0 0 24 24" fill="white" width="13" height="13"><path d="M6 9l6 6 6-6"/></svg>
+        <!-- Dropdown Menu -->
+        <div class="nav-dropdown" id="nav-dropdown">
+          <div class="nav-dropdown-profile">
+            <div class="nav-avatar profile-red"></div>
+            <span>Himanshi</span>
+          </div>
+          <div class="nav-dropdown-profile">
+            <div class="nav-avatar profile-blue"></div>
+            <span>Guest</span>
+          </div>
+          <div class="nav-dropdown-profile">
+            <div class="nav-avatar profile-kids"></div>
+            <span>Kids</span>
+          </div>
+          <div class="nav-dropdown-divider"></div>
+          <a href="#">Manage Profiles</a>
+          <a href="#" id="nav-owner-account-link">Account</a>
+          <a href="#" id="nav-recycle-bin-link" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" style="vertical-align:-2px;margin-right:5px">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
+            </svg>
+            Recycle Bin
+          </a>
+          <a href="#">Help Centre</a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="index.html" id="nav-signout-link">Sign out of Himanshi</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== BILLBOARD (HERO) ===== -->
+  <div class="billboard" id="billboard">
+    <!-- Static image fallback (replaced by JS if a video upload exists) -->
+    <div class="billboard-bg" id="billboard-bg"
+      style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1920&q=80');">
+    </div>
+    <!-- Video element (hidden until a video upload is found) -->
+    <video class="billboard-video hidden" id="billboard-video" muted loop playsinline></video>
+    <div class="billboard-overlay"></div>
+
+    <!-- Top-right floating badges -->
+    <div class="billboard-floating-badges" id="billboard-floating-badges">
+      <div class="billboard-badge billboard-badge--top10">
+        <span class="badge-top10-tag">TOP 10</span>
+        <span class="badge-top10-sep">·</span>
+        <span class="badge-top10-text">#1 in Shows Today</span>
+      </div>
+      <div class="billboard-badge billboard-badge--recommend">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13">
+          <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" />
+        </svg>
+        <span>We think you'll love this!</span>
+      </div>
+    </div>
+
+    <div class="billboard-info">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Stranger_Things_logo.png" alt="Stranger Things"
+        class="billboard-title-img" id="billboard-title-img" />
+      <!-- Plain text title shown when no logo image is available (for uploaded videos) -->
+      <h1 class="billboard-text-title hidden" id="billboard-text-title"></h1>
+      <div class="billboard-meta" id="billboard-meta">Series • Sci-Fi • Horror • 2016 • 4 Seasons • TV-14</div>
+      <p class="billboard-synopsis" id="billboard-synopsis">When a young boy vanishes, a small town uncovers a mystery involving secret
+        experiments, terrifying supernatural forces and one strange little girl.</p>
+      <div class="billboard-buttons">
+        <button class="billboard-btn play-btn magnetic-btn" id="billboard-play-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          Play
+        </button>
+        <button class="billboard-btn info-btn magnetic-btn" id="billboard-info-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" width="24" height="24">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          More Info
+        </button>
+      </div>
+    </div>
+    <!-- Mute toggle (bottom-right, same style as hover popup) -->
+    <button class="billboard-mute-btn hidden" id="billboard-mute-btn" aria-label="Unmute">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <line x1="23" y1="9" x2="17" y2="15"></line>
+        <line x1="17" y1="9" x2="23" y2="15"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ===== GALLERY ROWS ===== -->
+  <div class="galleries-container">
+
+    <!-- Row 1: Trending Now (uploads + presets sorted by recency) -->
+    <div class="gallery-row" id="home-row-1">
+      <h2 class="gallery-title">Trending Now</h2>
+      <div class="slider-container">
+        <div class="slider-track" id="slider-1">
+          <!-- Populated by JS -->
+        </div>
+        <button class="slider-arrow slider-arrow-left">❮</button>
+        <button class="slider-arrow slider-arrow-right">❯</button>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="gallery-row" id="home-row-2">
+      <h2 class="gallery-title">Himanshi Originals</h2>
+      <div class="slider-container">
+        <div class="slider-track" id="slider-2">
+          <!-- Populated by JS -->
+        </div>
+        <button class="slider-arrow slider-arrow-left">❮</button>
+        <button class="slider-arrow slider-arrow-right">❯</button>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="gallery-row" id="home-row-3">
+      <h2 class="gallery-title">Top Picks for You</h2>
+      <div class="slider-container">
+        <div class="slider-track" id="slider-3">
+          <!-- Populated by JS -->
+        </div>
+        <button class="slider-arrow slider-arrow-left">❮</button>
+        <button class="slider-arrow slider-arrow-right">❯</button>
+      </div>
+    </div>
+
+    <!-- Filter View Row (shown when a nav filter is active, hidden on Home) -->
+    <div class="gallery-row gallery-row--filter hidden" id="filter-row">
+      <h2 class="gallery-title" id="filter-row-title"></h2>
+      <div class="slider-container">
+        <div class="slider-track" id="slider-filter">
+          <!-- Populated by JS on filter activation -->
+        </div>
+        <button class="slider-arrow slider-arrow-left">❮</button>
+        <button class="slider-arrow slider-arrow-right">❯</button>
+      </div>
+      <!-- Empty-state message (shown when filter yields 0 results) -->
+      <div class="filter-empty-state hidden" id="filter-empty-state">
+        <p class="filter-empty-msg" id="filter-empty-msg"></p>
+      </div>
+    </div>
+
+    <!-- Hidden Safe Space View (unlocked ONLY via exact secret code in search) -->
+    <div class="gallery-row gallery-row--safespace hidden" id="safespace-row">
+      <div class="safespace-header">
+        <div class="safespace-header-left">
+          <h2 class="gallery-title safespace-title">Safe Space</h2>
+          <span class="safespace-badge">Private</span>
+        </div>
+        <div class="safespace-header-actions">
+          <button class="safespace-action-btn safespace-add-btn" id="safespace-add-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add to Safe Space
+          </button>
+          <button class="safespace-action-btn safespace-exit-btn" id="safespace-exit-btn" type="button">
+            Exit Safe Space
+          </button>
+        </div>
+      </div>
+      <div class="slider-container">
+        <div class="slider-track" id="slider-safespace">
+          <!-- Populated by JS on Safe Space unlock -->
+        </div>
+        <button class="slider-arrow slider-arrow-left">❮</button>
+        <button class="slider-arrow slider-arrow-right">❯</button>
+      </div>
+      <!-- Empty-state message for Safe Space -->
+      <div class="safespace-empty-state hidden" id="safespace-empty-state">
+        <div class="safespace-empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <p class="safespace-empty-title">Your Safe Space is empty</p>
+        <p class="safespace-empty-desc">Upload private photos or videos here. They will stay hidden from all public rows, searches, and notifications.</p>
+        <button class="safespace-empty-add-btn" id="safespace-empty-add-btn" type="button">
+          Add First Item
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer" style="margin-top: 5rem;">
+    <div class="footer-inner">
+      <p class="footer-copy">Himanshi India</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/browse.js?v=45"></script>
+</body>
+
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Himanshi - Watch TV Shows Online, Watch Movies Online</title>
+  <link rel="icon" type="image/png" href="https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico" />
+  <meta name="description"
+    content="Watch Himanshi movies & TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet, and more." />
+  <link rel="stylesheet" href="style.css?v=8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Martel+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        for (var i = 0; i < regs.length; i++) regs[i].unregister();
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <!-- ===== PREMIUM EFFECTS ===== -->
+  <div id="cursor-glow" class="cursor-glow"></div>
+  <div id="scroll-progress" class="scroll-progress"></div>
+  <div id="page-transition" class="page-transition"></div>
+
+  <button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" fill="none" width="24" height="24">
+      <path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </svg>
+  </button>
+
+  <!-- ===== PROFILES SCREEN ===== -->
+  <div id="profiles-screen" class="profiles-screen hidden">
+    <div class="profiles-container">
+      <h1 class="profiles-title">Who's watching?</h1>
+      <ul class="profiles-list">
+        <li class="profile-item" data-profile="user">
+          <div class="profile-avatar profile-red"></div>
+          <span class="profile-name">Himanshi</span>
+        </li>
+        <li class="profile-item" data-profile="guest">
+          <div class="profile-avatar profile-blue"></div>
+          <span class="profile-name">Guest</span>
+        </li>
+        <li class="profile-item" data-profile="kids">
+          <div class="profile-avatar profile-kids"></div>
+          <span class="profile-name">Kids</span>
+        </li>
+      </ul>
+      <button class="manage-profiles-btn">Manage Profiles</button>
+    </div>
+  </div>
+
+  <!-- ===== SPLASH SCREEN ===== -->
+  <div id="splash-screen" class="splash-screen" aria-label="Loading Himanshi" role="status">
+
+    <!-- Stage 1: Solo H zooms in dramatically -->
+    <div class="splash-n" id="splash-n">H</div>
+
+    <!-- Stage 2–3: Full HIMANSHI word, each letter animates in with stagger -->
+    <div class="splash-word" id="splash-word">
+      <span class="splash-letter" style="--i:0">H</span>
+      <span class="splash-letter" style="--i:1">I</span>
+      <span class="splash-letter" style="--i:2">M</span>
+      <span class="splash-letter" style="--i:3">A</span>
+      <span class="splash-letter" style="--i:4">N</span>
+      <span class="splash-letter" style="--i:5">S</span>
+      <span class="splash-letter" style="--i:6">H</span>
+      <span class="splash-letter" style="--i:7">I</span>
+    </div>
+
+  </div>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <canvas id="particles-canvas"></canvas>
+    <div class="hero-light-rays"></div>
+
+    <!-- NAV -->
+    <nav class="navbar" id="navbar">
+      <a href="#" class="netflix-logo" id="logo-link" aria-label="Himanshi Home">
+        <span class="brand-logo-text">HIMANSHI</span>
+      </a>
+      <div class="nav-right">
+        <div class="language-select" id="language-select">
+          <span class="globe-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+          </span>
+          <select id="lang-dropdown" aria-label="Select language">
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+          </select>
+          <span class="chevron-icon" aria-hidden="true">▾</span>
+        </div>
+        <div id="auth-wrapper">
+          <a href="#" class="signin-btn" id="signin-btn">Sign In</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO CONTENT -->
+    <div class="hero-content">
+      <h1 class="hero-title hero-anim" style="--anim-delay: 200ms;">Unlimited movies, TV shows, and more</h1>
+      <p class="hero-subtitle hero-anim" style="--anim-delay: 400ms;">Watch anywhere. Cancel anytime.</p>
+      <p class="hero-cta-text hero-anim" style="--anim-delay: 600ms;">Ready to watch? Enter your email to create or
+        restart your membership.</p>
+      <div class="hero-form hero-anim" id="hero-form" style="--anim-delay: 800ms;">
+        <div class="input-wrapper">
+          <input type="email" id="hero-email" class="email-input" placeholder=" " autocomplete="email" />
+          <label for="hero-email" class="floating-label">Email address</label>
+        </div>
+        <button class="get-started-btn magnetic-btn" id="get-started-btn">
+          Get Started
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION DIVIDER -->
+  <div class="section-divider"></div>
+
+  <!-- ===== FEATURES ===== -->
+
+  <!-- Feature 1: TV -->
+  <section class="feature-section" id="feature-tv">
+    <div class="feature-inner">
+      <div class="feature-text" data-reveal data-delay="0">
+        <h2 class="feature-title">Enjoy on your TV.</h2>
+        <p class="feature-desc">Watch on Smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.
+        </p>
+      </div>
+      <div class="feature-media" data-reveal data-delay="200">
+        <div class="tv-container">
+          <img src="images/tv_mockup.png" alt="TV showing Himanshi" class="feature-img tv-img" loading="lazy" />
+          <div class="tv-video-wrapper">
+            <video class="tv-video" autoplay muted loop playsinline>
+              <source src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-0819.m4v"
+                type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Feature 2: Download -->
+  <section class="feature-section" id="feature-download">
+    <div class="feature-inner reverse">
+      <div class="feature-text" data-reveal data-delay="0">
+        <h2 class="feature-title">Download your shows to watch offline.</h2>
+        <p class="feature-desc">Save your favourites easily and always have something to watch.</p>
+      </div>
+      <div class="feature-media" data-reveal data-delay="200">
+        <div class="download-container device-glow">
+          <img src="images/mobile_download.png" alt="Mobile download" class="feature-img mobile-img" loading="lazy" />
+          <div class="download-card" id="download-card">
+            <img src="images/mobile_download.png" alt="Stranger Things" class="download-thumb" />
+            <div class="download-info">
+              <p class="download-title">Stranger Things</p>
+              <p class="download-sub">Downloading...</p>
+            </div>
+            <div class="download-anim">
+              <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" class="download-ring" aria-hidden="true">
+                <circle cx="25" cy="25" r="20" fill="none" stroke="#0071eb" stroke-width="4" stroke-dasharray="100"
+                  stroke-dashoffset="30" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Feature 3: Watch Everywhere -->
+  <section class="feature-section" id="feature-everywhere">
+    <div class="feature-inner">
+      <div class="feature-text" data-reveal data-delay="0">
+        <h2 class="feature-title">Watch everywhere.</h2>
+        <p class="feature-desc">Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</p>
+      </div>
+      <div class="feature-media" data-reveal data-delay="200">
+        <div class="everywhere-container">
+          <img src="images/multidevice.png" alt="Multiple devices" class="feature-img everywhere-img" loading="lazy" />
+          <div class="everywhere-video-wrapper">
+            <video class="everywhere-video" autoplay muted loop playsinline>
+              <source src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-devices.m4v"
+                type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Feature 4: Kids -->
+  <section class="feature-section" id="feature-kids">
+    <div class="feature-inner reverse">
+      <div class="feature-text" data-reveal data-delay="0">
+        <h2 class="feature-title">Create profiles for kids.</h2>
+        <p class="feature-desc">Send kids on adventures with their favourite characters in a space made just for
+          them—free with your membership.</p>
+      </div>
+      <div class="feature-media" data-reveal data-delay="200">
+        <img src="images/kids_profile.png" alt="Kids profiles" class="feature-img kids-img" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== FAQ SECTION ===== -->
+  <section class="faq-section" id="faq-section">
+    <h2 class="faq-title" data-reveal data-delay="0">Frequently Asked Questions</h2>
+
+    <div class="faq-list" id="faq-list" data-reveal data-delay="100">
+
+      <div class="faq-item" id="faq-1">
+        <button class="faq-question magnetic-btn" aria-expanded="false">
+          <span>What is Himanshi?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Himanshi is a streaming service that offers a wide variety of award-winning TV shows, movies, anime,
+            documentaries, and more on thousands of internet-connected devices.</p>
+          <p>You can watch as much as you want, whenever you want without a single commercial – all for one low monthly
+            price. There's always something new to discover and new TV shows and movies are added every week!</p>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq-2">
+        <button class="faq-question magnetic-btn" aria-expanded="false">
+          <span>How much does Himanshi cost?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Watch Himanshi on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly
+            fee. Plans range from ₹149 to ₹649 a month. No extra costs, no contracts.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq-3">
+        <button class="faq-question magnetic-btn" aria-expanded="false">
+          <span>Where can I watch?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Watch anywhere, anytime. Sign in with your Himanshi account to watch instantly on the web at himanshi.com
+            from your personal computer or on any internet-connected device that offers the Himanshi app, including smart
+            TVs, smartphones, tablets, streaming media players and game consoles.</p>
+          <p>You can also download your favourite shows with the iOS or Android app. Use downloads to watch while you're
+            on the go and without an internet connection. Take Himanshi with you anywhere.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq-4">
+        <button class="faq-question magnetic-btn" aria-expanded="false">
+          <span>How do I cancel?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Himanshi is flexible. There are no pesky contracts and no commitments. You can easily cancel your account
+            online in two clicks. There are no cancellation fees – start or stop your account anytime.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq-5">
+        <button class="faq-question magnetic-btn" aria-expanded="false">
+          <span>What can I watch on Himanshi?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Himanshi has an extensive library of feature films, documentaries, TV shows, anime, award-winning Himanshi
+            originals, and more. Watch as much as you want, anytime you want.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq-6">
+        <button class="faq-question magnetic-btn" aria-expanded="false">
+          <span>Is Himanshi good for kids?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>The Himanshi Kids experience is included in your membership to give parents control while kids enjoy
+            family-friendly TV shows and movies in their own space.</p>
+          <p>Kids profiles come with PIN-protected parental controls that let you restrict the maturity rating of
+            content kids can watch and block specific titles you don't want kids to see.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="faq-cta" data-reveal data-delay="200">
+      <p class="faq-cta-text">Ready to watch? Enter your email to create or restart your membership.</p>
+      <div class="hero-form faq-form" id="faq-form">
+        <div class="input-wrapper">
+          <input type="email" id="faq-email" class="email-input" placeholder=" " autocomplete="email" />
+          <label for="faq-email" class="floating-label">Email address</label>
+        </div>
+        <button class="get-started-btn magnetic-btn" id="faq-get-started-btn">
+          Get Started
+          <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="footer">
+    <div class="footer-inner">
+      <p class="footer-contact">Questions? <a href="tel:000800-919-1743" id="footer-phone">Call 000800-919-1743</a></p>
+      <div class="footer-grid">
+        <ul class="footer-col">
+          <li><a href="#" id="footer-faq">FAQ</a></li>
+          <li><a href="#" id="footer-investor">Investor Relations</a></li>
+          <li><a href="#" id="footer-privacy">Privacy</a></li>
+          <li><a href="#" id="footer-speed">Speed Test</a></li>
+        </ul>
+        <ul class="footer-col">
+          <li><a href="#" id="footer-help">Help Centre</a></li>
+          <li><a href="#" id="footer-jobs">Jobs</a></li>
+          <li><a href="#" id="footer-cookie">Cookie Preferences</a></li>
+          <li><a href="#" id="footer-legal">Legal Notices</a></li>
+        </ul>
+        <ul class="footer-col">
+          <li><a href="#" id="footer-account">Account</a></li>
+          <li><a href="#" id="footer-ways">Ways to Watch</a></li>
+          <li><a href="#" id="footer-corporate">Corporate Information</a></li>
+          <li><a href="#" id="footer-only">Himanshi Originals</a></li>
+        </ul>
+        <ul class="footer-col">
+          <li><a href="#" id="footer-media">Media Centre</a></li>
+          <li><a href="#" id="footer-terms">Terms of Use</a></li>
+          <li><a href="#" id="footer-contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-lang">
+        <div class="language-select footer-lang-sel" id="footer-lang-select">
+          <select id="footer-lang-dropdown" aria-label="Select language">
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+          </select>
+          <span class="globe-icon" aria-hidden="true">🌐</span>
+          <span class="chevron-icon" aria-hidden="true">▾</span>
+        </div>
+      </div>
+      <p class="footer-copy">Himanshi India</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js?v=41"></script>
+</body>
+
+</html>
