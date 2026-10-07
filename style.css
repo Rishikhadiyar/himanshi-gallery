@@ -102,7 +102,7 @@
    * The .netflix-hover-popup handles gallery cards via its own overlay path.
    * ──────────────────────────────────────────────────────────────────────── */
   --hover-scale:      1.2;
-  --hover-transition: var(--card-hover-speed) var(--ease-out-expo);
+  --hover-transition: 800ms var(--ease-out-expo);
 }
 
 /* ---------- 2. RESET & PERFORMANCE BASE ---------- */
@@ -509,11 +509,13 @@ body:not(.loaded) .email-input {
   padding: 7px 17px;
   border-radius: 3px;
   border: none;
-  transition: background-color 0.2s var(--ease-out-expo);
+  transition: background-color 0.2s var(--ease-out-expo), transform var(--hover-transition);
 }
 
-.signin-btn:hover {
+.signin-btn:hover,
+.signin-btn:focus-visible {
   background-color: #c11119;
+  transform: scale(var(--hover-scale));
 }
 
 /* ---------- 6. BUTTONS (MAGNETIC, SHIMMER) ---------- */
@@ -1507,6 +1509,13 @@ body.loaded .hero-anim {
   height: 32px;
   border-radius: 4px;
   background-size: cover;
+  transition: transform var(--hover-transition);
+}
+
+.nav-profile:hover .nav-avatar,
+.nav-profile:focus-visible .nav-avatar,
+.nav-avatar:hover {
+  transform: scale(var(--hover-scale));
 }
 
 .nav-profile-name {
@@ -1579,13 +1588,15 @@ body.loaded .hero-anim {
   font-weight: 700;
 }
 
-.browse-nav-links a:not(.active):hover {
+.browse-nav-links a:not(.active):hover,
+.browse-nav-links a:not(.active):focus-visible {
   color: #b3b3b3;
   transform: scale(var(--hover-scale));
 }
 
 /* Active link also scales on hover so it doesn't feel dead */
-.browse-nav-links a.active:hover {
+.browse-nav-links a.active:hover,
+.browse-nav-links a.active:focus-visible {
   transform: scale(var(--hover-scale));
 }
 
@@ -1637,7 +1648,8 @@ body.loaded .hero-anim {
   transition: transform var(--hover-transition);
 }
 
-.nav-search-btn:hover {
+.nav-search-btn:hover,
+.nav-search-btn:focus-visible {
   transform: scale(var(--hover-scale));
 }
 
@@ -1697,7 +1709,8 @@ body.loaded .hero-anim {
   transition: transform var(--hover-transition);
 }
 
-.nav-notifications-btn:hover {
+.nav-notifications-btn:hover,
+.nav-notifications-btn:focus-visible {
   transform: scale(var(--hover-scale));
 }
 
@@ -1881,7 +1894,8 @@ body.loaded .hero-anim {
     transform var(--hover-transition);
 }
 
-.nav-dropdown-profile:hover {
+.nav-dropdown-profile:hover,
+.nav-dropdown-profile:focus-visible {
   background: rgba(255, 255, 255, 0.08);
   transform: scale(var(--hover-scale));
   transform-origin: left center;
@@ -2077,7 +2091,8 @@ body.loaded .hero-anim {
   color: black;
 }
 
-.play-btn:hover {
+.play-btn:hover,
+.play-btn:focus-visible {
   background-color: rgba(255, 255, 255, 0.75);
   transform: scale(var(--hover-scale));
 }
@@ -2087,7 +2102,8 @@ body.loaded .hero-anim {
   color: white;
 }
 
-.info-btn:hover {
+.info-btn:hover,
+.info-btn:focus-visible {
   background-color: rgba(109, 109, 110, 0.4);
   transform: scale(var(--hover-scale));
 }
@@ -2144,7 +2160,8 @@ body.loaded .hero-anim {
     transform var(--hover-transition);
 }
 
-.billboard-mute-btn:hover {
+.billboard-mute-btn:hover,
+.billboard-mute-btn:focus-visible {
   background: rgba(255, 255, 255, 0.2);
   border-color: white;
   transform: scale(var(--hover-scale));
@@ -2638,7 +2655,8 @@ body.loaded .hero-anim {
     transform var(--hover-transition);
 }
 
-.popup-mute-btn:hover {
+.popup-mute-btn:hover,
+.popup-mute-btn:focus-visible {
   background: rgba(255, 255, 255, 0.2);
   border-color: white;
   transform: scale(var(--hover-scale));
@@ -2703,7 +2721,8 @@ body.loaded .hero-anim {
     transform var(--hover-transition);
 }
 
-.popup-action-btn:hover {
+.popup-action-btn:hover,
+.popup-action-btn:focus-visible {
   border-color: white;
   background: #404040;
   transform: scale(var(--hover-scale));
@@ -2891,11 +2910,12 @@ body.loaded .hero-anim {
   pointer-events: auto;
   /* Enable clicks on the back button */
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
-  transition: transform var(--t-fast) var(--ease-out-expo);
+  transition: transform var(--hover-transition);
 }
 
-.netflix-player-back:hover {
-  transform: scale(1.1);
+.netflix-player-back:hover,
+.netflix-player-back:focus-visible {
+  transform: scale(var(--hover-scale));
 }
 
 .netflix-player-back:focus-visible {
@@ -2926,12 +2946,13 @@ body.loaded .hero-anim {
   justify-content: center;
   cursor: pointer;
   padding: 0;
-  transition: transform var(--t-fast) var(--ease-out-expo), background var(--t-fast) var(--ease-out-expo), border-color var(--t-fast) var(--ease-out-expo);
+  transition: transform var(--hover-transition), background var(--t-fast) var(--ease-out-expo), border-color var(--t-fast) var(--ease-out-expo);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
 }
 
-.netflix-player-action-btn:hover {
-  transform: scale(1.12);
+.netflix-player-action-btn:hover,
+.netflix-player-action-btn:focus-visible {
+  transform: scale(var(--hover-scale));
   background: rgba(255, 255, 255, 0.25);
   border-color: #ffffff;
 }
@@ -3069,7 +3090,7 @@ body.loaded .hero-anim {
   transform: scale(0.7);
   transition:
     opacity var(--t-fast) var(--ease-out-expo),
-    transform var(--t-fast) var(--ease-apple-spring),
+    transform var(--hover-transition),
     background var(--t-flash) var(--ease-out-expo),
     border-color var(--t-flash) var(--ease-out-expo),
     color var(--t-flash) var(--ease-out-expo);
@@ -3085,10 +3106,12 @@ body.loaded .hero-anim {
 }
 
 /* Red on hover over the button itself */
-.gallery-remove-btn:hover {
+.gallery-remove-btn:hover,
+.gallery-remove-btn:focus-visible {
   background: var(--clr-red);
   border-color: var(--clr-red);
   color: white;
+  transform: scale(var(--hover-scale));
 }
 
 .gallery-remove-btn:focus-visible {
@@ -3121,7 +3144,7 @@ body.loaded .hero-anim {
   transform: scale(0.7);
   transition:
     opacity var(--t-fast) var(--ease-out-expo),
-    transform var(--t-fast) var(--ease-apple-spring),
+    transform var(--hover-transition),
     background var(--t-flash) var(--ease-out-expo),
     border-color var(--t-flash) var(--ease-out-expo),
     color var(--t-flash) var(--ease-out-expo),
@@ -3137,11 +3160,13 @@ body.loaded .hero-anim {
   pointer-events: auto;
 }
 
-.gallery-safespace-btn:hover {
+.gallery-safespace-btn:hover,
+.gallery-safespace-btn:focus-visible {
   background: #8b5cf6;
   border-color: #a78bfa;
   color: #fff;
   box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+  transform: scale(var(--hover-scale));
 }
 
 .gallery-safespace-btn:focus-visible {
@@ -3172,7 +3197,7 @@ body.loaded .hero-anim {
   transform: scale(0.7);
   transition:
     opacity var(--t-fast) var(--ease-out-expo),
-    transform var(--t-fast) var(--ease-apple-spring),
+    transform var(--hover-transition),
     background var(--t-flash) var(--ease-out-expo),
     border-color var(--t-flash) var(--ease-out-expo),
     color var(--t-flash) var(--ease-out-expo);
@@ -3187,10 +3212,12 @@ body.loaded .hero-anim {
   pointer-events: auto;
 }
 
-.gallery-edit-btn:hover {
+.gallery-edit-btn:hover,
+.gallery-edit-btn:focus-visible {
   background: #0071eb;
   border-color: #0071eb;
   color: white;
+  transform: scale(var(--hover-scale));
 }
 
 .gallery-edit-btn:focus-visible {
@@ -3263,12 +3290,14 @@ body.loaded .hero-anim {
   font-size: 1.6rem;
   cursor: pointer;
   line-height: 1;
-  transition: color var(--t-flash) var(--ease-out-expo);
+  transition: color var(--t-flash) var(--ease-out-expo), transform var(--hover-transition);
   padding: 4px;
 }
 
-.upload-modal-close:hover {
+.upload-modal-close:hover,
+.upload-modal-close:focus-visible {
   color: white;
+  transform: scale(var(--hover-scale));
 }
 
 .upload-modal-title {
@@ -3557,13 +3586,14 @@ body.loaded .hero-anim {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform var(--t-fast) var(--ease-out-expo), background-color var(--t-fast) var(--ease-out-expo), border-color var(--t-fast) var(--ease-out-expo);
+  transition: transform var(--hover-transition), background-color var(--t-fast) var(--ease-out-expo), border-color var(--t-fast) var(--ease-out-expo);
 }
 
-.detail-panel-close-btn:hover {
+.detail-panel-close-btn:hover,
+.detail-panel-close-btn:focus-visible {
   background: rgba(255, 255, 255, 0.22);
   border-color: rgba(255, 255, 255, 0.4);
-  transform: scale(1.1);
+  transform: scale(var(--hover-scale));
   color: #ffffff;
 }
 
@@ -3642,11 +3672,12 @@ body.loaded .hero-anim {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform var(--t-fast) var(--ease-out-expo), background-color var(--t-fast) var(--ease-out-expo);
+  transition: transform var(--hover-transition), background-color var(--t-fast) var(--ease-out-expo);
 }
 
-.detail-panel-mute-btn:hover {
-  transform: scale(1.08);
+.detail-panel-mute-btn:hover,
+.detail-panel-mute-btn:focus-visible {
+  transform: scale(var(--hover-scale));
   background: rgba(255, 255, 255, 0.2);
 }
 
@@ -3668,11 +3699,12 @@ body.loaded .hero-anim {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform var(--t-fast) var(--ease-out-expo), background-color var(--t-fast) var(--ease-out-expo), border-color var(--t-fast) var(--ease-out-expo);
+  transition: transform var(--hover-transition), background-color var(--t-fast) var(--ease-out-expo), border-color var(--t-fast) var(--ease-out-expo);
 }
 
-.detail-panel-fullscreen-btn:hover {
-  transform: scale(1.08);
+.detail-panel-fullscreen-btn:hover,
+.detail-panel-fullscreen-btn:focus-visible {
+  transform: scale(var(--hover-scale));
   background: rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0.4);
   color: #ffffff;
@@ -3779,11 +3811,12 @@ body.loaded .hero-anim {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform var(--t-fast) var(--ease-out-expo), background-color var(--t-fast) var(--ease-out-expo), border-color var(--t-fast) var(--ease-out-expo);
+  transition: transform var(--hover-transition), background-color var(--t-fast) var(--ease-out-expo), border-color var(--t-fast) var(--ease-out-expo);
 }
 
-.detail-panel-action-btn:hover {
-  transform: scale(1.12);
+.detail-panel-action-btn:hover,
+.detail-panel-action-btn:focus-visible {
+  transform: scale(var(--hover-scale));
   background: rgba(255, 255, 255, 0.22);
   border-color: rgba(255, 255, 255, 0.4);
 }
@@ -5080,11 +5113,13 @@ body.loaded .hero-anim {
   cursor: pointer;
   padding: 4px 8px;
   border-radius: 4px;
-  transition: color 0.15s, background 0.15s;
+  transition: color 0.15s, background 0.15s, transform var(--hover-transition);
 }
-.recycle-bin-close:hover {
+.recycle-bin-close:hover,
+.recycle-bin-close:focus-visible {
   color: #fff;
   background: rgba(255,255,255,0.08);
+  transform: scale(var(--hover-scale));
 }
 .recycle-bin-subtitle {
   font-size: 0.78rem;
